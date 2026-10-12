@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{margin:0;font-family:sans-serif;background:#e5ddd5}
+.header{background:#075e54;color:white;padding:10px;display:flex;align-items:center;gap:10px}
+.header img{width:40px;height:40px;border-radius:50%;background:white}
+.chat{padding:10px;padding-bottom:70px}
+.msg{max-width:70%;padding:8px;border-radius:8px;margin:6px 0}
+.me{background:#dcf8c6;margin-left:auto}
+.other{background:white}
+.bar{position:fixed;bottom:0;left:0;right:0;background:#f0f0f0;padding:8px;display:flex;gap:8px}
+.bar input{flex:1;padding:10px;border-radius:20px;border:1px solid #ccc}
+.bar button{background:#075e54;color:white;border:none;border-radius:50%;width:42px;height:42px}
+</style>
+</head>
+<body>
+<div class="header">
+  <img src="photo.jpg">
+  <div><b>user name</b><br><small>Online</small></div>
+</div>
+
+<div class="chat" id="chat">
+  <div class="msg other">Hello User am Japhet how is the service<br><small>10:15 AM</small></div>
+</div>
+
+<div class="bar">
+  <input type="text" id="input" placeholder="type a message">
+  <button id="btn">➤</button>
+</div>
+
+<script>
+let bnt = document.getElementById("btn");
+let input = document.getElementById("input");
+let chat = document.getElementById("chat");
+
+function sendMessage(){
+  if(input.value.trim() === "") return;
+  let div = document.createElement("div");
+  div.className = "msg me";
+  div.innerHTML = input.value + "<br><small>" + new Date().toLocaleTimeString() + "</small>";
+  chat.appendChild(div);
+  input.value = "";
+}
+
+bnt.addEventListener("click", sendMessage);
+
+input.addEventListener("keypress", function(e){
+  if(e.key === "Enter"){ sendMessage(); }
+});
+</script>
+</body>
+</html>
